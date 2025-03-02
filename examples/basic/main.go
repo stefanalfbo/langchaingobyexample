@@ -16,8 +16,12 @@ func main() {
 		log.Fatalf("error loading .env file: %v", err)
 	}
 
+	// Set explicit the model to use, an alternative to setting
+	// the OPENAI_MODEL environment variable in the .env file
+	option := openai.WithModel("gpt-4o-mini")
+
 	// Create a new langchain model
-	llm, err := openai.New()
+	llm, err := openai.New(option)
 	if err != nil {
 		log.Fatalf("error creating langchain model: %v", err)
 	}
